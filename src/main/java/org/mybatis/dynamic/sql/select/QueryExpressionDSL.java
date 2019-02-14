@@ -1,5 +1,5 @@
 /**
- *    Copyright 2016-2018 the original author or authors.
+ *    Copyright 2016-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -67,6 +67,11 @@ public class QueryExpressionDSL<R> implements Buildable<R> {
             SqlCriterion<?>...subCriteria) {
         return new QueryExpressionWhereBuilder(column, condition, subCriteria);
     }
+
+    public <T> QueryExpressionWhereBuilder where(){
+        return new QueryExpressionWhereBuilder();
+    }
+
     
     @Override
     public R build() {
@@ -202,7 +207,10 @@ public class QueryExpressionDSL<R> implements Buildable<R> {
         private <T> QueryExpressionWhereBuilder(BindableColumn<T> column, VisitableCondition<T> condition) {
             super(column, condition);
         }
-        
+
+        private <T> QueryExpressionWhereBuilder() {
+            super();
+        }
         private <T> QueryExpressionWhereBuilder(BindableColumn<T> column, VisitableCondition<T> condition,
                 SqlCriterion<?>...subCriteria) {
             super(column, condition, subCriteria);

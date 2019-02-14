@@ -1,5 +1,5 @@
 /**
- *    Copyright 2016-2017 the original author or authors.
+ *    Copyright 2016-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,9 +15,7 @@
  */
 package org.mybatis.dynamic.sql.where;
 
-import org.mybatis.dynamic.sql.BindableColumn;
-import org.mybatis.dynamic.sql.SqlCriterion;
-import org.mybatis.dynamic.sql.VisitableCondition;
+import org.mybatis.dynamic.sql.*;
 
 public class WhereDSL extends AbstractWhereDSL<WhereDSL> {
 
@@ -27,6 +25,10 @@ public class WhereDSL extends AbstractWhereDSL<WhereDSL> {
 
     private <T> WhereDSL(BindableColumn<T> column, VisitableCondition<T> condition, SqlCriterion<?>... subCriteria) {
         super(column, condition, subCriteria);
+    }
+
+    private <T> WhereDSL(){
+        super();
     }
 
     @Override
@@ -41,6 +43,10 @@ public class WhereDSL extends AbstractWhereDSL<WhereDSL> {
     public static <T> WhereDSL where(BindableColumn<T> column, VisitableCondition<T> condition,
             SqlCriterion<?>... subCriteria) {
         return new WhereDSL(column, condition, subCriteria);
+    }
+
+    public static <T> WhereDSL where(){
+        return new WhereDSL();
     }
 
     public WhereModel build() {

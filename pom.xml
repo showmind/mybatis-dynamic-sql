@@ -17,11 +17,11 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.mybatis</groupId>
-    <artifactId>mybatis-parent</artifactId>
-    <version>31</version>
-  </parent>
+  <!--<parent>-->
+    <!--<groupId>org.mybatis</groupId>-->
+    <!--<artifactId>mybatis-parent</artifactId>-->
+    <!--<version>31</version>-->
+  <!--</parent>-->
   <groupId>org.mybatis.dynamic-sql</groupId>
   <artifactId>mybatis-dynamic-sql</artifactId>
   <version>1.1.1-SNAPSHOT</version>
@@ -51,6 +51,20 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <configuration>
+          <attach>true</attach>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals><goal>jar</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
   
   <reporting>
@@ -123,22 +137,14 @@
     <developerConnection>scm:git:ssh://git@github.com/mybatis/mybatis-dynamic-sql.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-  <issueManagement>
-    <system>GitHub Issue Management</system>
-    <url>https://github.com/mybatis/mybatis-dynamic-sql/issues</url>
-  </issueManagement>
-  <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/mybatis/mybatis-dynamic-sql</url>
-  </ciManagement>
   <distributionManagement>
-    <site>
-      <id>gh-pages</id>
-      <name>MyBatis Dynamic SQL GitHub Pages</name>
-      <url>git:ssh://git@github.com/mybatis/mybatis-dynamic-sql.git?gh-pages#</url>
-    </site>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <url>http://121.196.232.60:8081/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
   </distributionManagement>
-  
+
+
   <profiles>
     <profile>
       <id>javadocVersion</id>
@@ -160,4 +166,5 @@
       </build>
     </profile>
   </profiles>
+
 </project>
